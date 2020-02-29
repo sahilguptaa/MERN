@@ -27,7 +27,6 @@ var userSchema = new schema(
     },
 
     encry_password: {
-      //TODO password
       type: String,
       required: true
     },
