@@ -3,3 +3,4 @@ testfront/
 projbackend/node_modules
 projfrontend/node_modules
 **/package-lock.json
+.env
