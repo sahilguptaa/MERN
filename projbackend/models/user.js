@@ -54,7 +54,7 @@ userSchema
     return this._password;
   });
 
-userSchema.method = {
+userSchema.methods = {
   authenticate: function(plainPassword) {
     return this.getSecurePassword(plainPassword) === this.encry_password;
   },
