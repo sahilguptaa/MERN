@@ -8,6 +8,7 @@ const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
 const cors = require("cors");
 const authRoutes = require("./routes/auth");
+const userRoutes = require("./routes/user");
 
 // DB Connection
 mongoose
@@ -27,6 +28,7 @@ app.use(cors());
 
 // Routes
 app.use("/api", authRoutes);
+app.use("/api", userRoutes);
 
 // Starting server
 app.listen(port, () => {

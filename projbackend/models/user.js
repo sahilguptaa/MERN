@@ -10,7 +10,7 @@ var userSchema = new schema(
       maxlength: 32,
       trim: true
     },
-    lastName: {
+    lastname: {
       type: String,
       maxlength: 32,
       trim: true
