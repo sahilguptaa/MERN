@@ -22,7 +22,7 @@ mongoose
 
 // MIDDLEWARES
 app.use(bodyParser.json());
-app.use(cookieParser());
+app.use(cookieParser()); // Help to put values to the cookies and validate with help of express-jwt.
 app.use(cors());
 
 // Routes
