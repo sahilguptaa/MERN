@@ -1,7 +1,7 @@
 const User = require("../models/user");
 const { check, validationResult } = require("express-validator");
-var jwt = require("jsonwebtoken");
-const { expressJwt } = require("express-jwt");
+var jwt = require("jsonwebtoken"); // save token to cookies
+const expressJwt = require("express-jwt"); //
 
 exports.signout = (req, res) => {
   //res.send("user signout");
@@ -72,4 +72,31 @@ exports.signin = (req, res) => {
       }
     });
   });
+};
+
+// Protected routes - acting as middleware
+exports.isSignedIn = expressJwt({
+  secret: process.env.SECRET,
+  userProperty: "auth"
+});
+
+// Custom Middlewares
+exports.isAuthenticated = (req, res, next) => {
+  let checker = req.profile && req.auth && req.profile._id === req.auth._id;
+  // profile will be set by front end and auth will be set up by the above middleware.
+  if (!checker) {
+    return res.status(403).json({
+      error: "ACCESS DENIED"
+    });
+  }
+  next();
+};
+
+exports.isAdmin = (req, res, next) => {
+  if (req.profile.role === 0) {
+    return res.status(403).json({
+      error: "You are not an admin."
+    });
+  }
+  next();
 };
